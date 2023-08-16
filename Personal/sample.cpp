@@ -1,40 +1,50 @@
-#include<stdio.h>
-int main()
-{
-    int a,b,c,d;
-    printf("Enter 1st Number\n");
-    scanf("%d",&a);
-    printf("Enter 2nd Number\n");
-    scanf("%d",&b);
-    printf("c=1 for addition,\nc=2 for subtraction,\nc=3 for multiplication,\nc=4 for division\n");
-    
-    while (1){
-    printf("Enter c value\n");
-    scanf("%d",&c);
-    if(c>0 && c<5){
+#include<iostream>
+using namespace std;
+int main(){
+    float a,b,d;
+    char c;
+    aa:
+    cout<<"Enter 1st Number :- "<<endl;
+    cin>>a;
+    cout<<"Enter 2nd Number :- "<<endl;
+    cin>>b;
+    ab:
+    cout<<"enter a operation(+,-,*,/) :- "<<endl;
+    cin>>c;
     switch(c){
-        case 1 :
+        case '+':
         d=a+b;
-        printf("Sum=%d",d);
+        cout<<a<<" + "<<b<<" = "<<d<<endl;
         break;
-        case 2 :
+        case '-':
         d=a-b;
-        printf("Diff=%d",d);
+        cout<<a<<" - "<<b<<" = "<<d<<endl;
         break;
-        case 3 :
+        case '*':
         d=a*b;
-        printf("Prod=%d",d);
+        cout<<a<<" * "<<b<<" = "<<d<<endl;
         break;
-        case 4 :
-        d=a*b;
-        printf("Div=%d",d);
+        case '/':
+        d=a/b;
+        cout<<a<<" / "<<b<<" = "<<d<<endl;
         break;
-    }
-    break;
-    }
-    else {
-        printf("invalid\n");
-    }
+        default:
+        cout << "Not a valid operator. Do you want to try again ?[Y/N]:- "<<endl;
+        cin>>c;
+        if(c=='y' || c=='Y'){
+            cout << "Do you want to enter new numbers ?[Y/N]"<<endl;
+            cin>>c;
+            if(c=='y' || c=='Y'){
+                goto aa;
+            }
+            else{
+                goto ab;
+            }
+        }
+        else{
+            cout<<"Thanks for operating me (-:"<<endl;
+        }
+        break;
     }
     return 0;
 }
