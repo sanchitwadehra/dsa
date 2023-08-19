@@ -28,7 +28,7 @@ label_1:
     f = 0;
 label_2:
     int lb;
-    cout << "Do you want to use 1-Linear or 2-Binary :- " << endl;
+    cout << "Do you want to use 1-Linear Search or 2-Binary Search :- " << endl;
     cin >> lb;
     if (lb != 1 && lb != 2)
     {
