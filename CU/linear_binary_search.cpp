@@ -22,7 +22,7 @@ int main()
     cout << endl;
     int s;
 label_1:
-    cout << "Enter the element you want to search :- " << endl;
+    cout << "\nEnter the element you want to search :- " << endl;
     cin >> s;
     int f;
     f = 0;
@@ -32,7 +32,7 @@ label_2:
     cin >> lb;
     if (lb != 1 && lb != 2)
     {
-        cout << "\nPlease enter a valid selection either 1-Linear Search or 2-Binary Search" << endl;
+        cout << "\nPlease enter a valid selection \n" << endl;
         goto label_2;
     }
     if (lb == 1)
@@ -42,7 +42,7 @@ label_2:
         {
             if (s == arr[i])
             {
-                cout << "Element Found :-) \n"
+                cout << "Element Found\n"
                      << "Index :- " << arr[i] << "\nValue :- " << s;
                 f++;
                 cout << "\nDo you want to retry [Y/N]:- " << endl;
