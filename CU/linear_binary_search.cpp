@@ -43,7 +43,7 @@ label_2:
             if (s == arr[i])
             {
                 cout << "Element Found\n"
-                     << "Index :- " << arr[i] << "\nValue :- " << s;
+                     << "Index :- " << i+1 << "\nValue :- " << s;
                 f++;
                 cout << "\nDo you want to retry [Y/N]:- " << endl;
                 cin >> yn;
