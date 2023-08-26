@@ -32,7 +32,8 @@ label_2:
     cin >> lb;
     if (lb != 1 && lb != 2)
     {
-        cout << "\nPlease enter a valid selection \n" << endl;
+        cout << "\nPlease enter a valid selection \n"
+             << endl;
         goto label_2;
     }
     if (lb == 1)
@@ -43,7 +44,7 @@ label_2:
             if (s == arr[i])
             {
                 cout << "Element Found\n"
-                     << "Index :- " << i+1 << "\nValue :- " << s;
+                     << "Index :- " << i + 1 << "\nValue :- " << s;
                 f++;
                 cout << "\nDo you want to retry [Y/N]:- " << endl;
                 cin >> yn;
