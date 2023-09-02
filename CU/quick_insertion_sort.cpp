@@ -43,28 +43,22 @@ void quicksort(int arr[], int l, int h)
     }
 }
 
-void insert(int arr[], int n, int cp)
-{
-    // cp=current position
-    for (cp; cp > 0; cp--)
-    {
-        int j = cp - 1;
-        if (arr[j] < arr[cp])
-        {
-            break;
-        }
-        if (arr[j] > arr[cp])
-        {
-            swap(&arr[j], &arr[cp]);
-        }
-    }
-}
-
 void insertionSort(int arr[], int n)
 {
     for (int i = 1; i < n; i++)
     {
-        insert(arr, n, i);
+        for (i; i > 0; i--)
+        {
+            int j = i - 1;
+            if (arr[j] < arr[i])
+            {
+                break;
+            }
+            if (arr[j] > arr[i])
+            {
+                swap(&arr[j], &arr[i]);
+            }
+        }
     }
 }
 
