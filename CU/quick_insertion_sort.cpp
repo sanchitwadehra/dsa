@@ -83,6 +83,7 @@ int main()
     cout << "\nSo the array you entered is :- " << endl;
     printArray(arr, n);
     cout << endl;
+    label_1:
     cout << "To sort by  1) quick sort or 2) insertion sort " << endl;
     int s;
     cin >> s;
@@ -98,7 +99,7 @@ int main()
         cout << "Printing the sorted array :- " << endl;
         printArray(carr, n);
     }
-    if (s == 2)
+    else if (s == 2)
     {
         int darr[n];
         // Copying the Array
@@ -109,6 +110,10 @@ int main()
         insertionSort(darr, n);
         cout << "Printing the sorted array :- " << endl;
         printArray(darr, n);
+    }
+    else{
+        cout<<"please enter a valid response"<<endl;
+        goto label_1;
     }
     return 0;
 }
