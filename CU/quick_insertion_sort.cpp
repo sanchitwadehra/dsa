@@ -65,7 +65,6 @@ void insertionSort(int arr[], int n)
     for (int i = 1; i < n; i++)
     {
         insert(arr, n, i);
-        cout << "trying" << endl;
     }
 }
 
@@ -83,7 +82,7 @@ int main()
     cout << "\nSo the array you entered is :- " << endl;
     printArray(arr, n);
     cout << endl;
-    label_1:
+label_1:
     cout << "To sort by  1) quick sort or 2) insertion sort " << endl;
     int s;
     cin >> s;
@@ -111,8 +110,9 @@ int main()
         cout << "Printing the sorted array :- " << endl;
         printArray(darr, n);
     }
-    else{
-        cout<<"please enter a valid response"<<endl;
+    else
+    {
+        cout << "please enter a valid response" << endl;
         goto label_1;
     }
     return 0;
