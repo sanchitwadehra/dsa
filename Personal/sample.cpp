@@ -82,7 +82,14 @@ int findNthSmallestIndex(const std::vector<int>& nums, int n) {
 int main()
 {
 
-    string s = "([])(){}({[]})";
+    string s = "([)]";
+    /*
+    cout<<"s[1] - "<<s[1]<<endl;
+    cout<<"s[2] - "<<s[2]<<endl;
+    if(s[1]==s[2]){
+        cout<<"same"<<endl;
+    }
+    */
     int t = 0;
     unordered_map<char, int> counter;
 
@@ -92,6 +99,8 @@ int main()
 
     vector<int> set_diff_ind;
     char d;
+
+    cout<<"set_diff_ind"<<endl;
 
     for (int i = 0; i < s.size(); i++)
     {
@@ -132,28 +141,43 @@ int main()
         }
     }
 
-    cout<<endl;
+    //cout<<endl;
 
+    //cout<<"deff_ind"<<endl;
     vector<int> diff_ind;
     diff_ind.push_back(set_diff_ind[0] + 1);
-    cout<<diff_ind[0]<<endl;
+   // cout<<diff_ind[0]<<endl;
     for (int i = 0; i < set_diff_ind.size() - 1; i++)
     {
         diff_ind.push_back(set_diff_ind[i + 1] - set_diff_ind[i]);
-        cout<<diff_ind[i+1]<<endl;
+       // cout<<diff_ind[i+1]<<endl;
     }
 
-    cout<<endl;
+    //cout<<endl;
 
     for (int i = 0; i <= diff_ind.size() - 1; i++)
     {
+        //cout<<"i - "<<i<<endl;
         int j = findNthSmallestIndex(diff_ind, i + 1);
-        //cout<<j;
-        int rp = diff_ind[j];
+        //cout<<"j - "<<j<<endl;
+        int rp = set_diff_ind[j];
         int lp = set_diff_ind[j] - (diff_ind[j] - 1);
+       // cout<<"(diff_ind[j]) / 2 - "<<(diff_ind[j])/2<<endl;
         for (int k = 0; k < (diff_ind[j]) / 2; k++)
         {
-            cout<<lp+k<<" "<<rp-k<<endl;
+           // cout<<lp+k<<" "<<rp-k<<endl<<endl;
+            if (s[rp-k] == ')')
+            {
+                s[rp-k] = '(';
+            }
+            else if (s[rp-k] == '}')
+            {
+                s[rp-k] = '{';
+            }
+            else
+            {
+                s[rp-k] = '[';
+            }
             if (s[lp + k] != s[rp - k])
             {
                 t--;
