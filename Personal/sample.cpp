@@ -54,6 +54,7 @@ bool main()
     }
 
     vector<int> diff_ind;
+    diff_ind.push_back(set_diff_ind[0]+1);
     for (int i = 0; i < set_diff_ind.size() - 1; i++)
     {
         diff_ind.push_back(set_diff_ind[i + 1] - set_diff_ind[i]);
