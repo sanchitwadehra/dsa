@@ -5,35 +5,6 @@
 #include <algorithm>
 using namespace std;
 
-/*
-int findNthSmallest(const std::vector<int> &vec, int n)
-{
-    if (n <= 0 || n > vec.size())
-    {
-        // Handle out of range cases
-        return -1; // You can choose an appropriate error code or behavior
-    }
-
-    std::vector<int> copy = vec;         // Make a copy to avoid modifying the original vector
-    std::sort(copy.begin(), copy.end()); // Sort the copy in ascending order
-
-    // The nth smallest value will be at index n - 1 in the sorted vector
-    int nthSmallest = copy[n - 1];
-
-    // Now, find the index of the nth smallest value in the original vector
-    for (int i = 0; i < vec.size(); ++i)
-    {
-        if (vec[i] == nthSmallest)
-        {
-            return i; // Return the index of the nth smallest value
-        }
-    }
-
-    // Handle the case where the value is not found (this shouldn't happen if the input is valid)
-    return -1; // You can choose an appropriate error code or behavior
-}
-*/
-
 struct CustomComparator {
     std::vector<int>& arr;
 
