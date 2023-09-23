@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm> // For sorting
 
 using namespace std;
 
@@ -29,19 +30,68 @@ int main()
         cin >> marksPercent[i];
     }
 
-    cout << "\nStudent data:\n";
-    for (int i = 0; i < maxStudents; i++)
+label:
+
+    cout << "\nAge se oopar ke bachon ke data dekhna chahte hain? (yes/no): ";
+    string ageChoice;
+    cin >> ageChoice;
+
+    int ageLimit = -1; 
+    if (ageChoice == "yes" || ageChoice == "y" || ageChoice == "Y")
     {
-        cout << "UID: " << uids[i] << ", Name: " << names[i] << ", Age: " << ages[i] << ", Marks Percentage: " << marksPercent[i] << "%" << endl;
+        cout << "Age limit enter karein: ";
+        cin >> ageLimit;
+    }
+
+    cout << "\nKya aap data ko sorted way mein dekhna chahte hain? (y/n): ";
+    string sortChoice;
+    cin >> sortChoice;
+
+    if (sortChoice == "y" || sortChoice == "Y")
+    {
+        for (int i = 0; i < maxStudents - 1; i++)
+        {
+            for (int j = 0; j < maxStudents - i - 1; j++)
+            {
+                if (marksPercent[j] > marksPercent[j + 1])
+                {
+                    // Swap the elements
+                    swap(uids[j], uids[j + 1]);
+                    swap(names[j], names[j + 1]);
+                    swap(ages[j], ages[j + 1]);
+                    swap(marksPercent[j], marksPercent[j + 1]);
+                }
+            }
+        }
+
+        cout << "\nStudent data marks-wise sorted form mein:\n";
+        for (int i = 0; i < maxStudents; i++)
+        {
+            if (ageLimit == -1 || ages[i] >= ageLimit)
+            {
+                cout << "UID: " << uids[i] << ", Name: " << names[i] << ", Age: " << ages[i] << ", Marks Percentage: " << marksPercent[i] << "%" << endl;
+            }
+        }
+    }
+    else
+    {
+        cout << "\nStudent data:\n";
+        for (int i = 0; i < maxStudents; i++)
+        {
+            if (ageLimit == -1 || ages[i] >= ageLimit)
+            {
+                cout << "UID: " << uids[i] << ", Name: " << names[i] << ", Age: " << ages[i] << ", Marks Percentage: " << marksPercent[i] << "%" << endl;
+            }
+        }
     }
 
     string tryAgain;
-    cout << "Kya aap phir se try karna chahte hain? (yes/no): ";
+    cout << "\nKya aap phir se try karna chahte hain? (y/n): ";
     cin >> tryAgain;
 
     if (tryAgain == "y" || tryAgain == "Y")
     {
-        main();
+        goto label;
     }
     else
     {
