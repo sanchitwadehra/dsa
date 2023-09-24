@@ -5,41 +5,55 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    bool compatibility(float a, float b, float apos, float posdiff, float targetpos) {
-        if (b < a) {
-            if ((((posdiff / (a - b)) * a) + apos) <= targetpos) {
+    bool compatibility(float a, float b, float apos, float posdiff, float targetpos)
+    {
+        if (b < a)
+        {
+            if ((((posdiff / (a - b)) * a) + apos) <= targetpos)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+    int carFleet(int target, vector<int> &position, vector<int> &speed)
+    {
         map<int, int> record;
         stack<float> manager; // Change the stack type to float
-        float prevkey; // Change the type of prevkey to float
-        int n = 0; // Initialize n to 0
-        for (int i = 0; i < position.size(); i++) {
+        float prevkey;        // Change the type of prevkey to float
+        int n = 0;            // Initialize n to 0
+        for (int i = 0; i < position.size(); i++)
+        {
             record[position[i]] = speed[i];
         }
-        for (const auto& pair : record) {
-            if (manager.empty()) {
+        for (const auto &pair : record)
+        {
+            if (manager.empty())
+            {
                 manager.push(pair.second);
-            } else {
-                if (compatibility(manager.top(), static_cast<float>(pair.second), prevkey, prevkey - static_cast<float>(pair.first()), static_cast<float>(target))) {
+            }
+            else
+            {
+                if (compatibility(static_cast<float>(manager.top()), static_cast<float>(pair.second), prevkey, static_cast<float>(pair.first) - prevkey, static_cast<float>(target)))
+                {
                     manager.pop();
                     manager.push(static_cast<float>(pair.second));
-                } else {
+                }
+                else
+                {
                     manager.pop();
                     manager.push(static_cast<float>(pair.second));
                     n++;
                 }
             }
-            prevkey = static_cast<float>(pair.first());
+            prevkey = static_cast<float>(pair.first);
         }
-        if (!manager.empty()) {
+        if (!manager.empty())
+        {
             manager.pop();
             n++;
         }
@@ -47,12 +61,13 @@ public:
     }
 };
 
-int main() {
+int main()
+{
     Solution solution;
 
-    vector<int> position = {10, 8, 0, 5, 3};
-    vector<int> speed = {2, 4, 1, 1, 3};
-    int target = 12;
+    vector<int> position = {0, 4, 2};
+    vector<int> speed = {2, 1, 3};
+    int target = 10;
 
     int result = solution.carFleet(target, position, speed);
 
