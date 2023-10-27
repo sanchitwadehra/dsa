@@ -14,7 +14,9 @@ int main() {
     int c=0;
     // Now you can access values along with their original indices
     for (const auto& pair : valueToIndexMap) {
-        
+        if(c==0){
+            
+        }
         cout << "Value: " << pair.first << ", Original Index: " << pair.second << endl;
         c++;
     }
