@@ -11,9 +11,12 @@ int main() {
         int value = histogram[i];
         valueToIndexMap[value] = i; // Store the value and its index in the hashmap
     }
+    int c=0;
     // Now you can access values along with their original indices
     for (const auto& pair : valueToIndexMap) {
+        
         cout << "Value: " << pair.first << ", Original Index: " << pair.second << endl;
+        c++;
     }
 
     
