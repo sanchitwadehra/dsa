@@ -1,31 +1,76 @@
-#include<iostream>
-#include<algorithm>
-#include<map>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
-int main() {
-    vector<int> histogram = {2,1,5,6,2,3};
 
-    map<int, int> valueToIndexMap; // Hashmap to store values and their indices
-    for (int i = 0; i < histogram.size(); ++i) {
-        int value = histogram[i];
-        valueToIndexMap[value] = i; // Store the value and its index in the hashmap
-    }
-    int c=0;
-    int greatestNumber;
-    // Now you can access values along with their original indices
-    for (const auto& pair : valueToIndexMap) {
-        if(c==0){
-            greatestNumber=pair.first*histogram.size();
-        }
-        else{
-            
-        }
-        cout << "Value: " << pair.first << ", Original Index: " << pair.second << endl;
-        c++;
+int main()
+{
+    vector<int> heights = {1, 2, 1};
+    vector<pair<int, int>> sortedheightsWithIndices;
+
+    for (int i = 0; i < heights.size(); i++)
+    {
+        sortedheightsWithIndices.push_back(make_pair(heights[i], i));
     }
 
-    
+    sort(sortedheightsWithIndices.begin(), sortedheightsWithIndices.end());
 
+    vector<int> sortedIndices;
+
+    for (int i = 0; i < sortedheightsWithIndices.size(); i++)
+    {
+        sortedIndices.push_back(sortedheightsWithIndices[i].second);
+    }
+
+    int checkValue, greatestNumber, lk, rk, lkDifference, rkDifference;
+    int n = heights.size();
+    greatestNumber = 0;
+
+    for (int i = 0; i < sortedIndices.size(); i++)
+    {
+        // cout << "Element: " << heights[sortedIndices[i]] << " at index: " << sortedIndices[i] << endl;
+        lk = 0;
+        rk = n - 1;
+        lkDifference = sortedIndices[i];
+        rkDifference = n - sortedIndices[i] - 1;
+        for (int j = i - 1; j >= 0; j--)
+        {
+            if (sortedIndices[j] < sortedIndices[i])
+            {
+                if ((sortedIndices[i] - sortedIndices[j]) < lkDifference)
+                {
+                    lk = sortedIndices[j];
+                    lkDifference = sortedIndices[i] - lk;
+                }
+            }
+            if (sortedIndices[j] > sortedIndices[i])
+            {
+                if ((sortedIndices[j] - sortedIndices[i]) < rkDifference)
+                {
+                    rk = sortedIndices[j];
+                    rkDifference = rk - sortedIndices[i];
+                }
+            }
+        }
+        if (lk == 0)
+        {
+            checkValue = (rk - lk) * heights[sortedIndices[i]];
+        }
+        else if (rk == n - 1)
+        {
+            checkValue = (rk - lk) * heights[sortedIndices[i]];
+        }
+        else
+        {
+            checkValue = (rk - lk - 1) * heights[sortedIndices[i]];
+        }
+        if (checkValue > greatestNumber)
+        {
+            greatestNumber = checkValue;
+        }
+    }
+
+    cout << greatestNumber << endl;
     return 0;
 }
