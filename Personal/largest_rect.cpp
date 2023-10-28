@@ -12,9 +12,13 @@ int main() {
         valueToIndexMap[value] = i; // Store the value and its index in the hashmap
     }
     int c=0;
+    int greatestNumber;
     // Now you can access values along with their original indices
     for (const auto& pair : valueToIndexMap) {
         if(c==0){
+            greatestNumber=pair.first*histogram.size();
+        }
+        else{
             
         }
         cout << "Value: " << pair.first << ", Original Index: " << pair.second << endl;
