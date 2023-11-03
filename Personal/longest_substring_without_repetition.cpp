@@ -1,33 +1,31 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include<unordered_set>
-using namespace std;
+#include <string>
+#include <unordered_set>
 
-int main()
-{
-    string s=" ";
-    unordered_set<char> bag;
-    int g;
-    g=0;
-    for(int i=0;i<s.size();i++)
-    {
-        if(bag.find(int(s[i]))==bag.end() && i!=(s.size()-1)){
-            bag.insert(int(s[i]));
-        }else if(i==s.size()-1){
-            bag.insert(int(s[i]));
-            if(bag.size()>g){
-                g=bag.size();
-            }
-        }
-        else{
-            if(bag.size()>g){
-                g=bag.size();
-            }
-            bag.clear();
-            bag.insert(int(s[i]));
+int lengthOfLongestSubstring(std::string s) {
+    int n = s.length();
+    int maxLength = 0;
+    int left = 0, right = 0;
+    std::unordered_set<char> uniqueChars;
+
+    while (right < n) {
+        if (uniqueChars.find(s[right]) == uniqueChars.end()) {
+            uniqueChars.insert(s[right]);
+            maxLength = std::max(maxLength, right - left + 1);
+            right++;
+        } else {
+            uniqueChars.erase(s[left]);
+            left++;
         }
     }
-    cout<<g<<endl;
+
+    return maxLength;
+}
+
+int main() {
+    std::string s = "ab cabcbb";
+    int result = lengthOfLongestSubstring(s);
+    std::cout << "Length of the longest substring without repeating characters: " << result << std::endl;
+
     return 0;
 }
