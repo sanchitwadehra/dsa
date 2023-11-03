@@ -2,7 +2,7 @@
 #include <string>
 #include <unordered_set>
 
-int longest_repeating_character_replacement(std::string s) {
+int longest_repeating_character_replacement(std::string s,int k) {
     int n = s.length();
     int maxLength = 0;
     int left = 0, right = 0;
@@ -24,7 +24,8 @@ int longest_repeating_character_replacement(std::string s) {
 
 int main() {
     std::string s = "AABABBA";
-    int result = longest_repeating_character_replacement(s);
+    int k = 1;
+    int result = longest_repeating_character_replacement(s,k);
     std::cout << "longest_repeating_character_replacement :- " << result << std::endl;
 
     return 0;
