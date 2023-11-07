@@ -7,11 +7,7 @@ using namespace std;
 int longest_repeating_character_replacement(std::string s, int k)
 {
     int s = s.size();
-    vector<char> key;
-    vector<int> value;
-    int l,r;
-    l=0;
-    r=0;
+    vector<pair<char, int> > record;
     
 }
 
