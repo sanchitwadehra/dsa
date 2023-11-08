@@ -4,24 +4,9 @@
 #include <algorithm>
 using namespace std;
 
-bool customCompare(const pair<int, int>& a, const pair<int, int>& b) {
-    return a.second > b.second; // Use greater than to sort in descending order
-}
-
-void most_popular_set_top(vector<pair<char, int> > &record){
-    sort(record.begin(), record.end(), customCompare);
-}
-
 int longest_repeating_character_replacement(string s, int k)
 {
-    int s = s.size();
-    vector<pair<char, int> > record;
-    int l,r;
-    l=0;
-    r=0;
-    while(r<=s.size()){
-
-    }
+    
 }
 
 int main()
