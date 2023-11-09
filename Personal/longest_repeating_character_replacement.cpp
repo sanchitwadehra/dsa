@@ -2,11 +2,34 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include<unordered_map>
 using namespace std;
 
 int longest_repeating_character_replacement(string s, int k)
 {
-    
+    unordered_map<char,int> record;
+    int l,r;
+    l=0;
+    r=0;
+    char top_element;
+    int temp_k;
+    while(r<=s.length()){
+        auto it = max_element(record.begin(), record.end());
+        if(s[r]==record[top_element] || (r-record[top_element])<=k){
+            if(s[r]==record[top_element]){
+                record[top_element]++;
+            }
+            else{
+                temp_k++;
+            }
+            r++;
+        }
+        else{
+            record[s[l]]--;
+            l++;
+            r++;
+        }
+    }
 }
 
 int main()
