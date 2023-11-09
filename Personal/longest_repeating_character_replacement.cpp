@@ -16,24 +16,37 @@ int longest_repeating_character_replacement(string s, int k)
     int temp_k;
     while(r<=s.length()){
         auto it = max_element(record.begin(), record.end());
+        top_element=it->first;
         if(record.find(s[r])==record.end()){
             record[s[r]]=1;
+            if((r-l+1)>g){
+                g=(r-l+1);
+            }
+            r++;
         }
-        else if(s[r]==record[top_element] || (r-record[top_element])<=k){
+        else if(s[r]==record[top_element] || (temp_k+1)<=k){
             if(s[r]==record[top_element]){
                 record[top_element]++;
             }
             else{
+                record[s[r]]++;
                 temp_k++;
+            }
+            if((r-l+1)>g){
+                g=(r-l+1);
             }
             r++;
         }
         else{
             record[s[l]]--;
+            if((r-l+1)>g){
+                g=(r-l+1);
+            }
             l++;
             r++;
         }
     }
+    cout<<g;
 }
 
 int main()
