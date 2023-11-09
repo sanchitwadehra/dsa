@@ -8,14 +8,18 @@ using namespace std;
 int longest_repeating_character_replacement(string s, int k)
 {
     unordered_map<char,int> record;
-    int l,r;
+    int l,r,g;
+    g=0;
     l=0;
     r=0;
     char top_element;
     int temp_k;
     while(r<=s.length()){
         auto it = max_element(record.begin(), record.end());
-        if(s[r]==record[top_element] || (r-record[top_element])<=k){
+        if(record.find(s[r])==record.end()){
+            record[s[r]]=1;
+        }
+        else if(s[r]==record[top_element] || (r-record[top_element])<=k){
             if(s[r]==record[top_element]){
                 record[top_element]++;
             }
