@@ -6,7 +6,15 @@ using namespace std;
 
 int longest_repeating_character_replacement(string s, int k)
 {
-    
+    int s = s.size();
+    vector<pair<char, int> > record;
+    record.clear();
+    int l,r;
+    l=0;
+    r=0;
+    while(r<=s.size()){
+        record[r].second
+    }
 }
 
 int main()
