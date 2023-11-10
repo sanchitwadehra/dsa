@@ -5,6 +5,10 @@
 #include<unordered_map>
 using namespace std;
 
+auto compare = [](const auto& lhs, const auto& rhs) {
+        return lhs.second < rhs.second;
+    };
+
 int longest_repeating_character_replacement(string s, int k)
 {
     unordered_map<char,int> record;
@@ -48,7 +52,7 @@ int longest_repeating_character_replacement(string s, int k)
             l++;
             r++;
         }
-        auto it = max_element(record.begin(), record.end());
+        auto it = max_element(record.begin(), record.end(), compare);
         top_element=it->first;
     }
     return g;
