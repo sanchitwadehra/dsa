@@ -79,3 +79,26 @@ int main()
 
     return 0;
 }
+
+/*
+MORE OPTIMIZED APPROACH
+
+    unordered_map<char, int> charCount;
+    int maxLength = 0;
+    int maxCount = 0;
+    int start = 0;
+
+    for (int end = 0; end < s.length(); ++end) {
+        charCount[s[end]]++;
+        maxCount = max(maxCount, charCount[s[end]]);
+
+        while (end - start + 1 - maxCount > k) {
+            charCount[s[start]]--;
+            start++;
+        }
+
+        maxLength = max(maxLength, end - start + 1);
+    }
+
+    return maxLength;
+*/
