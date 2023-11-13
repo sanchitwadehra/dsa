@@ -45,8 +45,8 @@ bool permutation_in_string(string s1, string s2)
                             {
                                 if (rs2[s2[j]] == rs1[s2[j]])
                                 {
-                                    l = j + 1;
-                                    r = l + (n - 1);
+                                    l = j;
+                                    r = (l + 1) + (n - 1);
                                     rs2.clear();
                                     break;
                                 }
