@@ -13,6 +13,8 @@ string minimum_window_substring(string t, string s)
     pair<int, int> smallest;
     smallest.first = 0;
     smallest.second = s.length();
+    int k;
+    k = 0;
     l = 0;
     r = 0;
     n = 0;
@@ -26,9 +28,9 @@ string minimum_window_substring(string t, string s)
     }
     else
     {
-        while (r < s.length())
+        while (r <= s.length())
         {
-            if (check.find(s[r]) != check.end() && record.find(s[r]) != record.end())
+            if (check.find(s[r]) != check.end() && record.find(s[r]) == record.end())
             {
                 record[s[r]]++;
                 n++;
@@ -43,30 +45,41 @@ string minimum_window_substring(string t, string s)
                     {
                         if (record.find(s[l]) != record.end())
                         {
-                            record[s[l]]--;
-                        }
-                        for (int i = l + 1; i <= r; i++)
-                        {
-                            if (s[i] != s[r])
+                            if (k > 0)
                             {
                                 break;
                             }
-                            else
+                            record[s[l]]--;
+                            if (record[s[l]] == 0)
                             {
-                                l++;
+                                record.erase(s[l]);
                             }
+                            for (int i = l + 1; i <= r; i++)
+                            {
+                                if (s[i] != s[r])
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    l++;
+                                }
+                            }
+                            k++;
                         }
-                        break;
+                        l++;
                     }
                     n--;
                 }
             }
+            k=0;
+            r++;
         }
     }
     string result(smallest.second, ' '); // Initialize with the size of smallest.second
     for (int i = 0; i < smallest.second; i++)
     {
-        result[i] = s[smallest.first + i];
+        result + s[smallest.first + i];
     }
     return result;
 }
