@@ -43,8 +43,8 @@ bool minimum_window_substring(string t, string s)
 
 int main()
 {
-    string t = "hello";
-    string s = "ooolleoooleh";
+    string t = "ABC";
+    string s = "ADOBECODEBANC";
     bool result = minimum_window_substring(t, s);
     cout << "minimum_window_substring :- " << result << endl;
     return 0;
