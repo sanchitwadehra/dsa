@@ -5,19 +5,38 @@
 #include <unordered_map>
 using namespace std;
 
+bool validating(unordered_map<char, int> &record, unordered_map<char, int> &check)
+{
+    for (auto it = check.begin(); it != check.end(); it++)
+    {
+        if (record.find(it->first) == record.end())
+        {
+            return false;
+        }
+    }
+    for (auto it = record.begin(); it != record.end(); it++)
+    {
+        if (check.find(it->first) != check.end())
+        {
+            if (it->second < check[it->first])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 string minimum_window_substring(string t, string s)
 {
     unordered_map<char, int> check;
     unordered_map<char, int> record;
-    int l, r, n;
+    int l, r;
     pair<int, int> smallest;
     smallest.first = 0;
     smallest.second = s.length();
-    int k;
-    k = 0;
     l = 0;
     r = 0;
-    n = 0;
     for (int i = 0; i < t.length(); i++)
     {
         check[t[i]]++;
@@ -28,6 +47,60 @@ string minimum_window_substring(string t, string s)
     }
     else
     {
+        while (r < s.length())
+        {
+            if (check.find(s[r]) != check.end())
+            {
+                record[s[r]]++;
+            }
+            while (l < r)
+            {
+                if (check.find(s[l]) != check.end())
+                {
+                    if ((record[s[r]] - 1) >= check[s[r]])
+                    {
+                        record[s[l]]--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                l++;
+            }
+            if (validating(record, check))
+            {
+                if ((r - l + 1) < smallest.second)
+                {
+                    smallest.first = l;
+                    smallest.second = (r - l + 1);
+                }
+            }
+            r++;
+        }
+    }
+    string result = s.substr(smallest.first, smallest.second);
+    return result;
+}
+
+int main()
+{
+    string t = "ABC";
+    string s = "ADOBECODEBANC";
+    string result = minimum_window_substring(t, s);
+    cout << "minimum_window_substring :- " << result << endl;
+    return 0;
+}
+
+/*
+
+string result(smallest.second, ' '); // Initialize with the size of smallest.second
+    for (int i = 0; i < smallest.second; i++)
+    {
+        result + s[smallest.first + i];
+    }
+    return result;
+
         while (r <= s.length())
         {
             if (check.find(s[r]) != check.end() && record.find(s[r]) == record.end())
@@ -75,20 +148,4 @@ string minimum_window_substring(string t, string s)
             k=0;
             r++;
         }
-    }
-    string result(smallest.second, ' '); // Initialize with the size of smallest.second
-    for (int i = 0; i < smallest.second; i++)
-    {
-        result + s[smallest.first + i];
-    }
-    return result;
-}
-
-int main()
-{
-    string t = "ABC";
-    string s = "ADOBECODEBANC";
-    string result = minimum_window_substring(t, s);
-    cout << "minimum_window_substring :- " << result << endl;
-    return 0;
-}
+*/
