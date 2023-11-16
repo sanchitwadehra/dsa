@@ -133,3 +133,55 @@ int main()
     cout << "minimum_window_substring :- " << result << endl;
     return 0;
 }
+
+/*
+MORE OPOTIMIZED APPROACH
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        if (s.empty() || t.empty() || s.length() < t.length()) {
+            return "";
+        }
+
+        unordered_map<char, int> check, window;
+        for (char c : t) {
+            check[c]++;
+        }
+
+        int required = check.size();
+        int formed = 0;
+        int l = 0, r = 0;
+        int minLen = INT_MAX, startIdx = -1;
+
+        while (r < s.length()) {
+            char c = s[r];
+            window[c]++;
+
+            if (check.find(c) != check.end() && window[c] == check[c]) {
+                formed++;
+            }
+
+            while (formed == required && l <= r) {
+                if (minLen > r - l + 1) {
+                    minLen = r - l + 1;
+                    startIdx = l;
+                }
+
+                char leftChar = s[l];
+                window[leftChar]--;
+
+                if (check.find(leftChar) != check.end() && window[leftChar] < check[leftChar]) {
+                    formed--;
+                }
+
+                l++;
+            }
+
+            r++;
+        }
+
+        return (startIdx == -1) ? "" : s.substr(startIdx, minLen);
+    }
+};
+
+*/
