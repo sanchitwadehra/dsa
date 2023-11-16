@@ -7,24 +7,31 @@ using namespace std;
 
 bool validating(unordered_map<char, int> &record, unordered_map<char, int> &check)
 {
-    for (auto it = check.begin(); it != check.end(); it++)
+    if (record.size() != check.size())
     {
-        if (record.find(it->first) == record.end())
-        {
-            return false;
-        }
+        return false;
     }
-    for (auto it = record.begin(); it != record.end(); it++)
+    else
     {
-        if (check.find(it->first) != check.end())
+        for (auto it = check.begin(); it != check.end(); it++)
         {
-            if (it->second < check[it->first])
+            if (record.find(it->first) == record.end())
             {
                 return false;
             }
         }
+        for (auto it = record.begin(); it != record.end(); it++)
+        {
+            if (check.find(it->first) != check.end())
+            {
+                if (it->second < check[it->first])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
-    return true;
 }
 
 string minimum_window_substring(string t, string s)
@@ -45,6 +52,32 @@ string minimum_window_substring(string t, string s)
     if (t.length() > s.length())
     {
         return "";
+    }
+    else if (t.length() == s.length())
+    {
+        if (t.length() == 1)
+        {
+            if (t != s)
+            {
+                return "";
+            }
+            else
+            {
+                return s;
+            }
+        }
+        for (int i = 0; i < s.length(); i++)
+        {
+            record[s[i]]++;
+        }
+        if (validating(record, check))
+        {
+            return s;
+        }
+        else
+        {
+            return "";
+        }
     }
     else
     {
@@ -81,11 +114,13 @@ string minimum_window_substring(string t, string s)
             r++;
         }
     }
-    if(k!=0){
+    if (k != 0)
+    {
         string result = s.substr(smallest.first, smallest.second);
-    return result;
+        return result;
     }
-    else{
+    else
+    {
         return "";
     }
 }
@@ -98,61 +133,3 @@ int main()
     cout << "minimum_window_substring :- " << result << endl;
     return 0;
 }
-
-/*
-
-string result(smallest.second, ' '); // Initialize with the size of smallest.second
-    for (int i = 0; i < smallest.second; i++)
-    {
-        result + s[smallest.first + i];
-    }
-    return result;
-
-        while (r <= s.length())
-        {
-            if (check.find(s[r]) != check.end() && record.find(s[r]) == record.end())
-            {
-                record[s[r]]++;
-                n++;
-                if (n == t.length())
-                {
-                    if ((r - l + 1) < smallest.second)
-                    {
-                        smallest.first = l;
-                        smallest.second = (r - l + 1);
-                    }
-                    while (l <= r)
-                    {
-                        if (record.find(s[l]) != record.end())
-                        {
-                            if (k > 0)
-                            {
-                                break;
-                            }
-                            record[s[l]]--;
-                            if (record[s[l]] == 0)
-                            {
-                                record.erase(s[l]);
-                            }
-                            for (int i = l + 1; i <= r; i++)
-                            {
-                                if (s[i] != s[r])
-                                {
-                                    break;
-                                }
-                                else
-                                {
-                                    l++;
-                                }
-                            }
-                            k++;
-                        }
-                        l++;
-                    }
-                    n--;
-                }
-            }
-            k=0;
-            r++;
-        }
-*/
