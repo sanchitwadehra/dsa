@@ -57,7 +57,7 @@ string minimum_window_substring(string t, string s)
             {
                 if (check.find(s[l]) != check.end())
                 {
-                    if ((record[s[r]] - 1) >= check[s[r]])
+                    if ((record[s[l]] - 1) >= check[s[l]])
                     {
                         record[s[l]]--;
                     }
