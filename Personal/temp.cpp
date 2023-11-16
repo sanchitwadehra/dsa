@@ -31,12 +31,13 @@ string minimum_window_substring(string t, string s)
 {
     unordered_map<char, int> check;
     unordered_map<char, int> record;
-    int l, r;
+    int l, r, k;
     pair<int, int> smallest;
     smallest.first = 0;
     smallest.second = s.length();
     l = 0;
     r = 0;
+    k = 0;
     for (int i = 0; i < t.length(); i++)
     {
         check[t[i]]++;
@@ -75,18 +76,24 @@ string minimum_window_substring(string t, string s)
                     smallest.first = l;
                     smallest.second = (r - l + 1);
                 }
+                k++;
             }
             r++;
         }
     }
-    string result = s.substr(smallest.first, smallest.second);
+    if(k!=0){
+        string result = s.substr(smallest.first, smallest.second);
     return result;
+    }
+    else{
+        return "";
+    }
 }
 
 int main()
 {
-    string t = "ABC";
-    string s = "ADOBECODEBANC";
+    string t = "b";
+    string s = "a";
     string result = minimum_window_substring(t, s);
     cout << "minimum_window_substring :- " << result << endl;
     return 0;
