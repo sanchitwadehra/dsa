@@ -42,14 +42,19 @@ int main() {
     rank.resize(n);
     std::vector<Edge> edges;
 
+    // Call make_set for each vertex
+    for (int i = 0; i < n; i++) {
+        make_set(i);
+    }
+
     std::cout << "\nEnter the cost adjacency matrix:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             int cost;
             std::cin >> cost;
-            if (cost == 0)
-                cost = 999;
-            edges.push_back({i, j, cost});
+            if (cost != 0) { // Only add an edge if there is a direct connection
+                edges.push_back({i, j, cost});
+            }
         }
     }
 
