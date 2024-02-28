@@ -78,3 +78,21 @@ int main() {
 
     return 0;
 }
+
+// Here's a sample 3x3 adjacency matrix you can use as input for the provided code:
+
+// ```
+// 4 0 3
+// 0 5 2
+// 3 2 1
+// ```
+
+// This matrix represents a graph with the following connections and costs:
+
+// - There's an edge between vertex 0 and vertex 1 with a cost of 4.
+// - There's an edge between vertex 0 and vertex 2 with a cost of 3.
+// - There's an edge between vertex 1 and vertex 2 with a cost of 5.
+// - There's an edge between vertex 2 and vertex 0 with a cost of 3 (same edge as 0-2, but entered on the other side of the matrix).
+// - There's an edge between vertex 2 and vertex 1 with a cost of 2.
+
+// Remember, the code only considers non-zero entries as connections between vertices. When you run the code with this input, it will find the minimum cost spanning tree (MST) for this graph and print the edges and total cost.
